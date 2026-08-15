@@ -1,0 +1,66 @@
+:root {
+    --primary-color: #eed0a4;
+    --secondary-color: #000051;
+    --tertiary-color: #010101;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+p {
+    color: var(--secondary-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  color: var(--tertiary-color);
+  background-color: #ffffff;
+}
+header .brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}   
+
+header .brand img {
+  width: 220px;
+  height: 220px;
+}
+
+header .carrito {
+    position: absolute;
+    display: right;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    top: 20px;
+    right: 20px;
+}
+
+header .carrito img{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    border: 2px solid var(--secondary-color);
+}
+
+footer {
+  color: black;
+  text-align: left;
+  padding: 5px;
+  margin: 5px;
+  font-size: 1.2rem;
+}
