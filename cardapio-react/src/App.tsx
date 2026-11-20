@@ -7,10 +7,13 @@ import { categories } from "./data/categories";
 import { useState } from "react";
 
 function App() {
+  const [activeCategory, setActiveCategory] = useState("todos");
+  const { products, loading, error } = useProduct();
 
-  const [activeCategory, setActiveCategory] = useState<string>();
-
-  const products = useProduct();
+  const visibleProducts =
+    activeCategory === "todos"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
 
   function handleSelectCategory(alias: string) {
     setActiveCategory(alias);
@@ -20,31 +23,39 @@ function App() {
     <>
       <Header />
 
-      <NavigationBar 
-      categories={categories}
-      activeCategory={activeCategory}
-      onSelectCategory = {handleSelectCategory}
+      <NavigationBar
+        categories={categories}
+        activeCategory={activeCategory}
+        onSelectCategory={handleSelectCategory}
       />
-
 
       <main>
         <section>
           <header>
             <h2>Produtos</h2>
             <p>
-              Categoria <span id="selected-category">{activeCategory}</span>: 10 itens
+              Categoria <span id="selected-category">{activeCategory}</span>: {" "}
+              {visibleProducts.length} itens
             </p>
           </header>
 
+          {loading && (
+            <p className="panel panel-loading">Carregando produtos...</p>
+          )}
 
-          {products.map((product) => (
+          {error && (
+            <p className="panel panel-error">
+              Não foi possível carregar os produtos: {error}
+            </p>
+          )}
+
+          {!loading && !error && visibleProducts.length === 0 && (
+            <p className="panel">Nenhum produto encontrado nesta categoria.</p>
+          )}
+
+          {visibleProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-
-          
-        
-
-
         </section>
 
         <aside>
@@ -59,7 +70,6 @@ function App() {
       </main>
 
       <Footer />
-
     </>
   );
 }

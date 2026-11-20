@@ -183,6 +183,25 @@ main > section header p{
     font-size: 0.75rem;
 }
 
+main > section .panel{
+    grid-column: 1 / -1;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background-color: #fff;
+    padding: 1rem;
+    color: var(--text-muted);
+}
+
+main > section .panel-loading{
+    border-color: #fdba74;
+    color: #9a3412;
+}
+
+main > section .panel-error{
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
 main > section article{
     display: grid;
     grid-template-columns: 1fr auto;
